@@ -4,7 +4,8 @@
   "scripts": {
     "client": "npm start --prefix Client/brijesh-dubey-portfolio",
     "server": "npm start --prefix Server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm start --prefix Server"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
