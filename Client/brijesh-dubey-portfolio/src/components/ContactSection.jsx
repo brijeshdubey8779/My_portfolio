@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({
@@ -13,41 +14,42 @@ const ContactSection = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch('http://localhost:5000/contact', {  // or your deployed backend URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+        const serviceId = 'service_27izw2s'; // Replace with your EmailJS Service ID
+        const templateId = 'template_mme6d8p'; // Replace with your EmailJS Template ID
+        const publicKey = '9HdWZ1Rv_74Jb5iWw'; // Replace with your EmailJS Public Key
+
+        console.log('Form Data:', formData);
+
+        emailjs.send(
+            serviceId,
+            templateId,
+            {
+                from_name: formData.name,     // Match {{from_name}}
+                from_email: formData.email,  // Match {{from_email}}
+                message: formData.message,   // Match {{message}}
+            },
+            publicKey
+        )
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                setStatus('Your message has been sent successfully!');
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                });
+            })
+            .catch((error) => {
+                console.error('FAILED...', error);
+                setStatus('An error occurred. Please try again later.');
             });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                setStatus(data.msg);
-            } else {
-                setStatus('Something went wrong. Please try again.');
-            }
-
-            // Clear the form after submission
-            setFormData({
-                name: '',
-                email: '',
-                message: '',
-            });
-        } catch (error) {
-            console.error('Error:', error);
-            setStatus('An error occurred. Please try again later.');
-        }
     };
 
-
     return (
-        <div className=" py-16 px-8 flex flex-col items-center justify-center">
+        <div className="py-16 px-8 flex flex-col items-center justify-center">
             <h2 className="text-3xl font-bold text-center mb-8">Contact Me</h2>
 
             {/* Email Address */}
@@ -114,6 +116,3 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
-
-
-

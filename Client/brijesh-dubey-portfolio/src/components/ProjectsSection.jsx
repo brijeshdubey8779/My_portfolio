@@ -18,10 +18,17 @@ const projects = [
     {
         title: "Portfolio Website",
         description: "A personal portfolio website built with React and TailwindCSS.",
-        technologies: ["React", "TailwindCSS"],
+        technologies: ["ReactJS", "TailwindCSS"],
         githubLink: "https://github.com/yourusername/portfolio",
-        liveDemo: "https://yourportfolio.com"
+        liveDemo: "https://brijeshdubeyportfolio.netlify.app/"
     },
+    {
+        title: "JobListings",
+        description: "A bsic job listing poage using ReactJs made for learning purpose",
+        technologies: ["ReactJS"],
+        githubLink: "https://github.com/brijeshdubey8779/job_listing",
+        liveDemo: "https://job-listing-component.netlify.app/",
+    }
     // {
     //     title: "E-commerce App",
     //     description: "An e-commerce application with Django backend and React frontend.",

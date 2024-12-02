@@ -6,9 +6,10 @@
     "server": "npm start --prefix Server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build-client": "rm -rf Client/brijesh-dubey-portfolio/node_modules && npm install --prefix Client/brijesh-dubey-portfolio && npm run build --prefix Client/brijesh-dubey-portfolio",
-  "start": "npm run build-client && node Server/index.js"
+    "start": "npm run build-client && node Server/index.js"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "emailjs-com": "^3.2.0"
   }
 }
